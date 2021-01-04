@@ -30,7 +30,7 @@ and benchmark how well they reconstructed it.
         # Prepare the alignment for the next steps
         cat data/nextstrain-2020-01-04/mafft.fasta | perl -plane 'if(/>/){$i++; $_=">$i";}' | bgzip -c > anonDeflines.fasta.gz
         samtools faidx anonDeflines.fasta.gz
-```
+    ```
 
 * prepare it for random sampling
   * rename seqids to integers
