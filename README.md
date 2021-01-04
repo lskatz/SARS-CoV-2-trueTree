@@ -1,3 +1,12 @@
+# Synopsis
+
+Creating a dataset for a "true" tree for SARS-CoV-2.
+Where we know the actual tree and phylogeny and create the genome assemblies to go with it.
+Tree-making pipelines can test their algorithm against the true tree
+and benchmark how well they reconstructed it.
+
+# Methods
+
 * TreeToReads
   * Dependencies
   * TreeToReads
@@ -9,7 +18,7 @@
   
         samtools faidx anonDeflines.fasta.gz
 
-* Evolutionary model
+* Evolutionary model - some evolutionary parameters are required for TreeToReads.
   * rate matrix for 100 reps, 100 random seqs each
 
         (set -e; for rep in `seq 1 100`; do echo "rep $rep" >&2; rm -f RAxML_*.T2 >&2; shuf -i 1-291834 -n 100 | xargs -n 1 samtools faidx anonDeflines.fasta.gz > 100.fasta; raxmlHPC -p $RANDOM -m GTRGAMMA -n T2 -s 100.fasta >& /dev/null; grep alpha RAxML_info.T2; done) > raxml.gtrgamma.rates.txt
