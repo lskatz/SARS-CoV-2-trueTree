@@ -47,6 +47,9 @@ and benchmark how well they reconstructed it.
             print $tree->as_text("newick")."\n";
           ' > anonymized.nwk
 
+          # Fix for TTR and file paths: remove all / characters from tree
+          sed -i.bak 's|/|_|g' data/nextstrain-2020-01-04/anonymized.nwk
+
 * prepare it for random sampling
   * rename seqids to integers
   * compress with bgzip
@@ -77,7 +80,8 @@ and benchmark how well they reconstructed it.
       treefile_path = data/nextstrain-2020-01-04/anonymized.nwk
       number_of_variable_sites = 6400 
       # base_genome_name should be the label of a tip in your tree
-      base_genome_name = Wuhan/WH01/2019
+      # I had changed / to _
+      base_genome_name = Wuhan_WH01_2019
       base_genome_path = data/nextstrain-2020-01-04/wuhan-1.fasta
       output_dir = TTR.out
 
