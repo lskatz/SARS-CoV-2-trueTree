@@ -34,18 +34,18 @@ and benchmark how well they reconstructed it.
 
     * Fix the tree so that it is fit for `seq-gen`.
 
-        perl -MBio::TreeIO -e '
-          $tree=Bio::TreeIO->new(-file=>"nextstrain_ncov_global_tree.resolved.nwk")->next_tree; 
-          $tree->force_binary; 
-          $tree->contract_linear_paths; 
-          for my $node($tree->get_nodes){
-            $node->branch_length || $node->branch_length(rand(1e-7)); 
-            if(!$node->is_Leaf){
-              $node->id("");
+          perl -MBio::TreeIO -e '
+            $tree=Bio::TreeIO->new(-file=>"nextstrain_ncov_global_tree.resolved.nwk")->next_tree; 
+            $tree->force_binary; 
+            $tree->contract_linear_paths; 
+            for my $node($tree->get_nodes){
+              $node->branch_length || $node->branch_length(rand(1e-7)); 
+              if(!$node->is_Leaf){
+                $node->id("");
+              } 
             } 
-          } 
-          print $tree->as_text("newick")."\n";
-        ' > anonymized.nwk
+            print $tree->as_text("newick")."\n";
+          ' > anonymized.nwk
 
 * prepare it for random sampling
   * rename seqids to integers
