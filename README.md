@@ -72,36 +72,36 @@ and benchmark how well they reconstructed it.
 
 * Run TreeToReads. Use parameters as found above.  I decided to exclude ART in my path to avoid read simulation.
 
-    #REQUIRED PARAMETERS
-    # tree must be newick or Nexus format, and include branch lengths
-    treefile_path = data/nextstrain-2020-01-04/anonymized.nwk
-    number_of_variable_sites = 6400 
-    # base_genome_name should be the label of a tip in your tree
-    base_genome_name = Wuhan/WH01/2019
-    base_genome_path = data/nextstrain-2020-01-04/wuhan-1.fasta
-    output_dir = TTR.out
+      #REQUIRED PARAMETERS
+      # tree must be newick or Nexus format, and include branch lengths
+      treefile_path = data/nextstrain-2020-01-04/anonymized.nwk
+      number_of_variable_sites = 6400 
+      # base_genome_name should be the label of a tip in your tree
+      base_genome_name = Wuhan/WH01/2019
+      base_genome_path = data/nextstrain-2020-01-04/wuhan-1.fasta
+      output_dir = TTR.out
 
-    #parameters of evolutionary model (comma seperated), in order ac, ag, at, cg, ct, gc (gc = 1)
-    rate_matrix = 0.25,0.82,0.15,0.27,2.99,1.00
+      #parameters of evolutionary model (comma seperated), in order ac, ag, at, cg, ct, gc (gc = 1)
+      rate_matrix = 0.25,0.82,0.15,0.27,2.99,1.00
 
-    #parameters for read simulation
-    coverage = 100 #either an integer or a file name of a comma delimited file with tip names and coverage
+      #parameters for read simulation
+      coverage = 100 #either an integer or a file name of a comma delimited file with tip names and coverage
 
-    #OPTIONAL PARAMETERS
-    prefix = sim_ #optional prefix prepended to sequence names, default is using orginal sequence names
+      #OPTIONAL PARAMETERS
+      prefix = sim_ #optional prefix prepended to sequence names, default is using orginal sequence names
 
-    #Optional evolutionary model parameters
-    gamma_shape = 5 #dafault is no rate variation across sites
+      #Optional evolutionary model parameters
+      gamma_shape = 5 #dafault is no rate variation across sites
 
-    #parameters for clustering of variable site locations (OPTIONAL)
-    mutation_clustering = ON
-    percent_clustered = 0.25 #The percentage of variable sites whose distance to another site is drawn from the clustering distribution
-    exponential_mean = 125 #Minimum allowed value = 2
+      #parameters for clustering of variable site locations (OPTIONAL)
+      mutation_clustering = ON
+      percent_clustered = 0.25 #The percentage of variable sites whose distance to another site is drawn from the clustering distribution
+      exponential_mean = 125 #Minimum allowed value = 2
 
-    #ART Optional parameters (for more fine grained control ART can be run seperately on the mutated genomes found in outdir/fasta_files)
-    error_model1 = example/ErrprofR1.txt  # If you haven't generated have one of your own using ART, you can use one supplied by ART.
-    error_model2 = example/ErrprofR2.txt  # Un-comment these lines (delete the first #) to set a non-default error profile
-    read_length = 150 #maximum value with example error profile is 150, use a default or generate adifferent error profile for longer reads.
-    fragment_size = 380
-    stdev_frag_size = 120
+      #ART Optional parameters (for more fine grained control ART can be run seperately on the mutated genomes found in outdir/fasta_files)
+      error_model1 = example/ErrprofR1.txt  # If you haven't generated have one of your own using ART, you can use one supplied by ART.
+      error_model2 = example/ErrprofR2.txt  # Un-comment these lines (delete the first #) to set a non-default error profile
+      read_length = 150 #maximum value with example error profile is 150, use a default or generate adifferent error profile for longer reads.
+      fragment_size = 380
+      stdev_frag_size = 120
 
