@@ -29,3 +29,25 @@ Therefore to understand what the ideal tree would be from a phylogenetic method,
 against a true tree.
 For SARS-CoV-2, this repo offers a true tree.
 
+# Comparisons
+
+Some suggestions for comparing your tree from your phylogenetic or clustering program are below
+
+## Robinson-Foulds
+
+This implementation is in my script under [lskScripts](https://github.com/lskatz/lskScripts/tree/master/scripts).
+There are many other implementations of Robinson-Foulds (RF).
+In my implementation, I also make 100 random trees
+and compare the observed RF between the tree and true tree
+vs the set of RFs between the random trees and true tree.
+
+    treedist_wrapper.pl --method rf simtree.tre mytree.dnd --numtrees 100 --numcpus 10 \
+      > rf.tsv 2> rf.og &
+
+This was my output for Mashtree v1.
+The interpretation is that there is an observable distance between the true tree and the Mashtree tree (obs=6740)
+but that it is much closer to the true tree than chance alone (avg=7542, Z=-137, p < 1e101).
+
+    Ref          Query         num  obs        avg        stdev   Z          p
+    simtree.tre  mashtree.dnd  100  6740.0000  7542.2600  5.8579  -136.9524  0.00e+00
+
